@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" >
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%-5level %d{dd-MM-yyyy HH:mm:ss.SSS} [%t] %replace{%msg}{}{}%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root name="ru.diasoft" level="info" additivity="false">
+            <AppenderRef ref="ConsoleAppender" />
+        </Root>
+    </Loggers>
+</Configuration>
