@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2022-05-19--0001-person-data
+      author: anepretimov
+      context: test
+      runOnChange: true
+      loadUpdateData:
+        primaryKey: id
+        file: db.changelog/data/csv/2022-05-19--0001-person-data.csv
+        relativeToChangeLogFile: true
+        separator: ","
+        quotChar: '"'
+        encoding: UTF-8
+        tableName: person
