@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import ru.diasoft.domain.Greeting;
 
@@ -15,7 +16,7 @@ public class LoggingAspect {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @Around("execution(* ru.diasoft.controller.GreetingController.*(..))")
-    public Greeting logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+    public ResponseEntity<Greeting> logAround(ProceedingJoinPoint joinPoint) throws Throwable {
 
         logger.info("Класс : " + joinPoint.getTarget().getClass().getName());
         logger.info("Метод : " + joinPoint.getSignature());
@@ -28,11 +29,11 @@ public class LoggingAspect {
         }
         logger.info(stringBuilder.toString());
 
-        Object proceed = joinPoint.proceed();
+        ResponseEntity<Greeting> proceed = (ResponseEntity<Greeting>)joinPoint.proceed();
 
-        logger.info("Результат работы : " + proceed);
+        logger.info("Результат работы : статус - " + proceed.getStatusCode() + ", тело сообщения - " + proceed.getBody());
 
-        return (Greeting) proceed;
+        return  proceed;
     }
 
 }
