@@ -1,12 +1,22 @@
 spring:
 
-  datasource:
-    url: jdbc:h2:mem:testdb
+#h2
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#
+#  h2:
+#    console:
+#      #enabled: false
+#      enabled: true
 
-  h2:
-    console:
-      #enabled: false
-      enabled: true
+#postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+    initialization-mode: always
+
 
   liquibase:
     enabled: true
